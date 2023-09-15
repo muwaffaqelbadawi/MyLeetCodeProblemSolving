@@ -79,14 +79,27 @@ const twoSumVersion6 = (nums, target) => {
   }
 };
 
+const twoSumVersion7 = (nums, target) => {
+  let map = {};
+  for (let i = 0; i < target.length; i++) {
+    let value = nums[i];
+    let complement = target - value;
+    if (map[target] !== undefined) {
+      return [map[complement], i];
+    } else {
+      map[value] = i;
+    }
+  }
+};
+
 const newObj = {};
 newObj[7888] = "";
 console.log(newObj[7888]);
 
-const nums = [2, 7, 11, 15];
-const target = 9;
-const testCase5 = twoSumVersion4(nums, target);
-console.log(testCase5);
+const nums = [3, 7, 11, 8];
+const target = 11;
+const testCase7 = twoSumVersion4(nums, target);
+console.log(testCase7);
 
 const testCase2 = twoSumVersion2(nums, target);
 
