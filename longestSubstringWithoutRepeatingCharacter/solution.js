@@ -7,7 +7,6 @@ const subArray = (arr) => {
       for (let k = i; k <= i + j; k++) {
         console.log(arr[k] + " ");
         console.log("\n");
-        
       }
     }
   }
