@@ -1,29 +1,22 @@
-class Solution:
-    def lengthOfLongestSubstring(self, s: str) -> int:
-        pass
-
 
 # Time Complexity of generating all substring = O(n**3)
 
-def subarray(arr, n):
-    # outer loop
-    # Pick starting point
-    for i in range(0, n):
+class Solution:
+    def __init__(self) -> None:
+        # This is the constructor function
+        pass
 
-        # inner loop
-        # Pick ending point
-        for j in range(i, n):
-
-            # another inner loop
-            # Print subarray between current
-            # starting and ending point
-            for k in range(i, j+1):
-                print(arr[k], end=" ")
-            print("\n", end="")
+    def subarray(self, arr, listSize):
+        for i in range(0, listSize):
+            for j in range(0, listSize - i):
+                for k in range(i, i + j + 1):
+                    print(arr[k], end=" ")
+                print("\n", end="")
 
 
 # Drivar Program
-arr = [1, 2, 3, 4]
-n = len(arr)
-print("All non-empty subarrays")
-subarray(arr, n)
+arr = [0, 1, 2, 3, 4]
+listSize = len(arr)
+
+solution1 = Solution()
+solution1.subarray(arr, listSize)
