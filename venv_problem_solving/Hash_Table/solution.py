@@ -23,7 +23,6 @@ class Hash_Table:
     def add(self, key, value):
         # return creating the index after runing it through hash formula
         index = hash_formula(key, self.bucket_num)
-        
         # if key does not exist
         if self.arr[index] == None:
             # add new [key, value] pair with the provided index
@@ -41,30 +40,23 @@ class Hash_Table:
                 # if the position is not empty (already has [key, value] pair)
             if inserted == False:
                 # add a new [key, value] pair along side of the first one
-                # [ [ [key, value], [key, value] ], [ [key, value] ] ]
                 self.arr[index].append([key, value])
                 
     def remove(self, key):
+        print(self.arr)
         # return creating the index after runing it through hash formula
         index = hash_formula(key, self.bucket_num)
-        
-        # if key does not exists
-        if self.arr[index] == None:
-            # loop through the entire list
-            for i in range(0, len(self.arr)):
-                # if there's only one element in the array and key exists
-                # in the specified index
-                if(len(self.arr) == 1 and self.arr[index][i][0] == key): 
-                # remove the item [key, value] pair uding the returned index
-                    self.arr[index].remove()
-                else:
-                    # loop through the entire list
-                    for i in range(0, len(self.arr)):
-                        # if there are more than one item in the array and key exists
-                        if(self.arr[index][i][0] == key):
-                            # remove the key
-                            self.arr[index][i][0].remove()
 
+        if(len(self.arr[index]) == 1 and self.arr[index][0][0] == key): 
+        # remove [key, value] pair
+            del(self.arr[index])
+        else:
+            for i in range(0, len(self.arr[index])):
+                # if key exists
+                if(self.arr[index][i][0] == key):
+                    # remove the [key, value] pair
+                    del(self.arr[index][i])
+                            
     def lookup(self, key):
         # return created index after runing it through hash formula
         index = hash_formula(key, self.bucket_num)
@@ -81,6 +73,9 @@ class Hash_Table:
                 if(self.arr[index][i][0] == key):
                     # return the value associated with the key
                     return self.arr[index][i][1]
+                else:
+                    print("this key does not exist")
+                    return None
 
 
     
@@ -90,4 +85,7 @@ my_hash_table.add("max", "music")
 my_hash_table.add("Alice", "girl")
 my_hash_table.add("Tesla", "car")
 
-print(my_hash_table.lookup("Tesla"))
+print(my_hash_table.lookup("max"))
+
+my_hash_table.remove("max")
+print(my_hash_table.lookup("max"))

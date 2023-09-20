@@ -1,9 +1,11 @@
 
 
-my_list = []
-for _ in range(4):
-    my_list.append(None)
+my_list = [1,2,3,4, ["p", 5]]
+# my_list[5] = 5
 
 
 print(my_list)
-# print(my_list[2])
+
+my_list.remove(my_list[4])
+del(my_list[0])
+print(my_list)
