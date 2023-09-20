@@ -14,26 +14,27 @@ def hash_formula(string_key, bucket_num) -> int:
     
 class Hash_Table:
     def __init__(self) -> None:
-        # specifying the number of buckets
         self.bucket_num = 4
-        # Initializing empty 2*bucket_num + 1 dimension array 
-        
-        # [ [[key, value]], [[key, value], [key, value]] ]
-        self.arr = []
-        
+        # Initializing array with size bucket_num + 1
+        # This is done by default in JavaScript
+        self.arr = [None for _ in range(self.bucket_num + 1)]
+        # specifying the number of buckets
+
     def add(self, key, value):
         # return creating the index after runing it through hash formula
         index = hash_formula(key, self.bucket_num)
+        
         # if key does not exist
         if self.arr[index] == None:
             # add new [key, value] pair with the provided index
             self.arr[index] = [[key, value]]
         else:
             inserted = False
-            # loop through the entire array
-            for i in range(0, len(self.arr)):
+            # loop through the the indexed bucket
+            for i in range(0, len(self.arr[index])):
                 # if key is in the ith position
                 if(self.arr[index][i][0] == key):
+                    # print("yeah")
                     # insert the value next to its key
                     self.arr[index][i][1] = value
                     inserted = True
@@ -80,8 +81,6 @@ class Hash_Table:
                 if(self.arr[index][i][0] == key):
                     # return the value associated with the key
                     return self.arr[index][i][1]
-                else:
-                    return self.arr
 
 
     

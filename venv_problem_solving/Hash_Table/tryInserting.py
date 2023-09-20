@@ -1,6 +1,8 @@
 
 
-my_list = [[[None for _ in range(2)] for _ in range(2)] for _ in range(4)]
+my_list = []
+for _ in range(4):
+    my_list.append(None)
 
 
 print(my_list)
