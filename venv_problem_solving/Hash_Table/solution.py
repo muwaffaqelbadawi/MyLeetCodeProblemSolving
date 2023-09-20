@@ -1,80 +1,94 @@
 # This is the implementation of Hashmap in python
-
 def hash_formula(string_key, bucket_num) -> int:
+        # Initializing the hash variable
         hash_var = 0
-        for i in range(string_key.length):
-            hash_var += ord(i)
+        # loop through the entire string key
+        for i in range(0, len(string_key)):
+            # add up string Unicode representation to hash variable 
+            hash_var += ord(string_key[i])
+            # this function will return the index of the [key, value] pair
+            # index will always be from 0 to bucket_num
         index = hash_var % bucket_num
+        # returning the created index
         return index
-
+    
 class Hash_Table:
-    def __init__(self, string_key, bucketNum) -> None:
-        self.arr = []
-        self.string_key = string_key
-        self.bucketNum = bucketNum
-
-    def Add(self, key, value) -> None:
-        # creating the index after runing it through hash formula
-        index = hash_formula(key)
-        # if key does not exist
-        if self.arr[index] == None:
-            return None
-        # loop through the entire list
-        for i in range(0, len(self.arr)):
-            # if the key is in the ith position
-            if(self.arr[index][i][0] == key):
-                # insert the value next to its key
-                self.arr[index] = [[key, value]]
-            else:
-                # if location is not empty
-                inserted = False # initialize inserted flag and set it to false
-                for i in range(0, len(self.arr)):
-                    if(self.arr[index][i][0] == key):
-                        # 0 is the key and 1 is the key
-                        self.arr[index][i][1] == value
-                        inserted = True
-                # if the position is not empty (already has key and value pair)
-                if inserted == False:
-                    # add a new key, value pair along side of the first one
-                    # [ [[key, value], [key, value]], [[key, value]] ]
-                    self.arr[index].append([key, value])
-
-            
-    def remove(self, key) -> None:
-        # creating the index after runing it through hash formula
-        index = hash_formula(key)
-        # if key does not exist
-        if self.arr[index] == None:
-            return None
+    def __init__(self) -> None:
+        # specifying the number of buckets
+        self.bucket_num = 4
+        # Initializing empty 2*bucket_num + 1 dimension array 
         
-        # loop through the entire list
-        for i in range(0, len(self.arr)):
-            # if there's only one element in the array and key exist
-            if(len(self.arr) == 1 & key == self.arr[index][i][0]): 
-              # remove the item
-                self.arr[index].remove()
-            else:
-                # loop through the entire list
-               for i in range(0, len(self.arr)):
-                # if key exist
-                   if(self.arr[index][i][0] == key):
-                    # remove the [key, value] pair
-                       self.arr[index][i][0].remove()
-
-                
-    def lookup(self, key) -> None:
-        # creating the index after runing it through hash formula
-        index = hash_formula(key)
+        # [ [[key, value]], [[key, value], [key, value]] ]
+        self.arr = []
+        
+    def add(self, key, value):
+        # return creating the index after runing it through hash formula
+        index = hash_formula(key, self.bucket_num)
         # if key does not exist
         if self.arr[index] == None:
-            pass
-        # loop through the entire list
-        for i in range(0, len(self.arr)):
-            # if there's only one element in the array and key exist
-            if(len(self.arr) == 1 & key == self.arr[i][0]):
-                pass
+            # add new [key, value] pair with the provided index
+            self.arr[index] = [[key, value]]
+        else:
+            inserted = False
+            # loop through the entire array
+            for i in range(0, len(self.arr)):
+                # if key is in the ith position
+                if(self.arr[index][i][0] == key):
+                    # insert the value next to its key
+                    self.arr[index][i][1] = value
+                    inserted = True
+                # if the position is not empty (already has [key, value] pair)
+            if inserted == False:
+                # add a new [key, value] pair along side of the first one
+                # [ [ [key, value], [key, value] ], [ [key, value] ] ]
+                self.arr[index].append([key, value])
+                
+    def remove(self, key):
+        # return creating the index after runing it through hash formula
+        index = hash_formula(key, self.bucket_num)
+        
+        # if key does not exists
+        if self.arr[index] == None:
+            # loop through the entire list
+            for i in range(0, len(self.arr)):
+                # if there's only one element in the array and key exists
+                # in the specified index
+                if(len(self.arr) == 1 and self.arr[index][i][0] == key): 
+                # remove the item [key, value] pair uding the returned index
+                    self.arr[index].remove()
+                else:
+                    # loop through the entire list
+                    for i in range(0, len(self.arr)):
+                        # if there are more than one item in the array and key exists
+                        if(self.arr[index][i][0] == key):
+                            # remove the key
+                            self.arr[index][i][0].remove()
+
+    def lookup(self, key):
+        # return created index after runing it through hash formula
+        index = hash_formula(key, self.bucket_num)
             
-            
+        # if key does not exists
+        if self.arr[index] == None:
+            # return not found
+            return None
+        else:
+            # print(len(self.arr))
+            # loop through the entire list
+            for i in range(0, len(self.arr)):
+                # if key exists in ith position
+                if(self.arr[index][i][0] == key):
+                    # return the value associated with the key
+                    return self.arr[index][i][1]
+                else:
+                    return self.arr
+
+
     
-    
-my_hash_table = Hash_Table("hash", 5)
+my_hash_table = Hash_Table()
+my_hash_table.add("muwaffaq", "person")
+my_hash_table.add("max", "music")
+my_hash_table.add("Alice", "girl")
+my_hash_table.add("Tesla", "car")
+
+print(my_hash_table.lookup("Tesla"))
