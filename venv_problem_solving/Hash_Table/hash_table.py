@@ -17,7 +17,7 @@ class Hash_Table:
         self.bucket_num = 4
         # Initializing array with size bucket_num + 1
         # This is done by default in JavaScript
-        self.arr = [None for _ in range(self.bucket_num + 1)]
+        self.arr = list([None for _ in range(self.bucket_num + 1)])
         # specifying the number of buckets
 
     def add(self, key, value):
@@ -27,6 +27,8 @@ class Hash_Table:
         if self.arr[index] == None:
             # add new [key, value] pair with the provided index
             self.arr[index] = [[key, value]]
+            # return inserted [key, value] pair
+            return list(self.arr[index][0])
         else:
             inserted = False
             # loop through the the indexed bucket
@@ -41,6 +43,8 @@ class Hash_Table:
             if inserted == False:
                 # add a new [key, value] pair along side of the first one
                 self.arr[index].append([key, value])
+                # return inserted [key, value] pair
+                return list(self.arr[index][1])
                 
     def remove(self, key):
         print(self.arr)
@@ -72,20 +76,4 @@ class Hash_Table:
                 # if key exists in ith position
                 if(self.arr[index][i][0] == key):
                     # return the value associated with the key
-                    return self.arr[index][i][1]
-                else:
-                    print("this key does not exist")
-                    return None
-
-
-    
-my_hash_table = Hash_Table()
-my_hash_table.add("muwaffaq", "person")
-my_hash_table.add("max", "music")
-my_hash_table.add("Alice", "girl")
-my_hash_table.add("Tesla", "car")
-
-print(my_hash_table.lookup("max"))
-
-my_hash_table.remove("max")
-print(my_hash_table.lookup("max"))
+                    return list(self.arr[index][i][1])
