@@ -1,10 +1,30 @@
 {
   "[python]": {
-    "editor.defaultFormatter": "ms-python.autopep8"
+    "editor.defaultFormatter": "ms-python.autopep8",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true
   },
-  "python.formatting.provider": "none",
+
+  "python.defaultInterpreterPath": "/usr/lib/python3.11/Python-3.11.5",
+  "python.pipenvPath": "${workspaceFolder}/venv_problem_solving/lib/python3.11/site-packages/pip",
+  "python.envFile": "${workspaceFolder}/venv_problem_solving",
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "python.testing.cwd": "${workspaceFolder}/venv_problem_solving",
+  "python.autoComplete.extraPaths": ["../venv_problem_solving/Hash_Table"],
+
   "files.associations": {
     ".bash_prompt": "shellscript",
     "iostream": "cpp"
-  }
+  },
+  "python.testing.unittestArgs": [
+    "-v",
+    "-s",
+    "../venv_problem_solving/test_folder/problem_solving/hash_map/test_add.py",
+    "-p",
+    "test_add.py"
+  ],
+  "python.testing.pytestEnabled": false,
+  "python.testing.unittestEnabled": true,
+  "python.formatting.provider": "none",
+  "python.analysis.extraPaths": ["./Hash_Table/python"]
 }
