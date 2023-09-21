@@ -77,3 +77,13 @@ class Hash_Table:
                 if(self.arr[index][i][0] == key):
                     # return the value associated with the key
                     return list(self.arr[index][i][1])
+
+
+def add(key, value):
+    myHashTable = Hash_Table()
+    return myHashTable.add(key, value)
+   
+    
+def lookup(key):
+    myHashTable = Hash_Table()
+    return myHashTable.lookup(key)
