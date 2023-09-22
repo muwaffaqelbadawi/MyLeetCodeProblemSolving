@@ -1,6 +1,4 @@
-
 # Time Complexity of generating all substring = O(n**3)
-
 class Solution:
     def __init__(self) -> None:
         # This is the constructor function
@@ -10,8 +8,9 @@ class Solution:
         for i in range(0, listSize):
             for j in range(0, listSize - i):
                 for k in range(i, i + j + 1):
-                    print(arr[k], end=" ")
-                print("\n", end="")
+                    print(arr[k])
+                #     print(arr[k], end=" ")
+                # print("\n", end="")
 
 
 # Drivar Program
