@@ -8,13 +8,13 @@ class Solution:
         for i in range(0, listSize):
             for j in range(0, listSize - i):
                 for k in range(i, i + j + 1):
-                    print(arr[k])
                     print(arr[k], end=" ")
                 print("\n", end="")
 
 
 # Drivar Program
-arr = [0, 1, 2, 3, 4]
+arr = "abcabcbb"
+# arr = [0, 1, 2, 3, 4]
 listSize = len(arr)
 
 solution1 = Solution()
