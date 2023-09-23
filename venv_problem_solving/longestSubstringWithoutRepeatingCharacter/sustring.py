@@ -9,8 +9,8 @@ class Solution:
             for j in range(0, listSize - i):
                 for k in range(i, i + j + 1):
                     print(arr[k])
-                #     print(arr[k], end=" ")
-                # print("\n", end="")
+                    print(arr[k], end=" ")
+                print("\n", end="")
 
 
 # Drivar Program
