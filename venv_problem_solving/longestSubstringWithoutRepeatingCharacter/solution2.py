@@ -22,32 +22,20 @@ class Solution:
                 # if there is repeating elements in subArray
                 # Time complexity of "in" operator is O(n), n = number of elements
                 elif s[i] in self.subArray:
-                    # if the remaining elements are less than subArray length
-                    if len(self.subArray) > len(s[i:]):
-                        print(self.subArray)
-                        # exit the loop and return subArray length
-                        return len(self.subArray)
-                    else:
-                        # if the remaining elements are greater than subArray length
-                        # skip the repeating character
-                        continue
+                    continue
                 else:
                     # append element
                     self.subArray.append(s[i])
-        print(self.subArray)
         # return subArray length
+        print(self.subArray)
         return len(self.subArray)
 
 my_solution = Solution()
-print(my_solution.lengthOfLongestSubstring("anviaj"))
+print(my_solution.lengthOfLongestSubstring("ckilbkd"))
 
 
 
-# Test Cases:
-# abcabcbb
-# bbbbb
-# pwwkew
-# ckilbkd
+
 
 """ my_list = [1,2,3,4]
 
